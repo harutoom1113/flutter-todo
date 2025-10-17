@@ -26,12 +26,11 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         title: ListTile(
           leading: CircleAvatar(
-            backgroundColor: Colors.amber.shade200,
+            backgroundImage: AssetImage('assets/profile.jpg'),
             radius: 25,
-            child: Image.asset('assets/profile.png'),
           ),
           title: Text(
-            'Hello Im ',
+            'Hello I\'m ',
             style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
           ),
           subtitle: const Text(
