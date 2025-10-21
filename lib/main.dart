@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/comon/show_model.dart';
 import 'package:gap/gap.dart';
 
 void main() {
@@ -90,7 +91,14 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () => showModalBottomSheet(
+                      isScrollControlled: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      context: context,
+                      builder: (context) => const AddNewTaskModel(),
+                    ),
                     child: const Text('+New Task'),
                   ),
                 ],
