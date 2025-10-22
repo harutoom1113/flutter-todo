@@ -1,16 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_todo/constants/app_style.dart';
+import 'package:flutter_todo/provider/radio_provider.dart';
 import 'package:flutter_todo/widget/date_time_widget.dart';
-import 'package:flutter_todo/widget/redio_widget.dart';
 import 'package:flutter_todo/widget/texyfield_widget.dart';
 import 'package:gap/gap.dart';
+import 'package:flutter_todo/widget/radio_widget.dart';
 
-class AddNewTaskModel extends StatelessWidget {
+class AddNewTaskModel extends ConsumerWidget {
   const AddNewTaskModel({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       //builderって何者？
       padding: const EdgeInsets.all(30),
@@ -48,35 +50,57 @@ class AddNewTaskModel extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: RedioWidget(titleRadio: "LRN", categColor: Colors.green),
-              ),
-              Expanded(
-                child: RedioWidget(
-                  titleRadio: "WRK",
-                  categColor: Colors.blue.shade700,
+                child: RadioWidget(
+                  titleRadio: "LRN",
+                  categColor: Colors.green,
+                  valueInput: 1,
+                  onChangedValue: () =>
+                      ref.read(radioProvider.notifier).update((state) => 1),
                 ),
               ),
               Expanded(
-                child: RedioWidget(
+                child: RadioWidget(
+                  titleRadio: "WRK",
+                  categColor: Colors.blue.shade700,
+                  valueInput: 2,
+                  onChangedValue: () =>
+                      ref.read(radioProvider.notifier).update((state) => 2),
+                ),
+              ),
+              Expanded(
+                child: RadioWidget(
                   titleRadio: "GEN",
                   categColor: Colors.amberAccent.shade700,
+                  valueInput: 3,
+                  onChangedValue: () =>
+                      ref.read(radioProvider.notifier).update((state) => 3),
                 ),
               ),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               DateTimeWidget(
                 titleText: "Date",
                 valueText: "dd/mm/yy",
                 iconSection: CupertinoIcons.calendar,
+                onTap: () => showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2021),
+                  lastDate: DateTime(2027),
+                ),
               ),
               Gap(22),
               DateTimeWidget(
                 titleText: "Time",
                 valueText: "hh : mm",
                 iconSection: CupertinoIcons.clock,
+                onTap: () => showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                ),
               ),
             ],
           ),
