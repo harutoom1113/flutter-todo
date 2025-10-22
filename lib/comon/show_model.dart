@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_todo/constants/app_style.dart';
+import 'package:flutter_todo/provider/date_time_provider.dart';
 import 'package:flutter_todo/provider/radio_provider.dart';
 import 'package:flutter_todo/widget/date_time_widget.dart';
 import 'package:flutter_todo/widget/texyfield_widget.dart';
@@ -13,6 +14,7 @@ class AddNewTaskModel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final dateProv = ref.watch(dateProvider);
     return Container(
       //builderって何者？
       padding: const EdgeInsets.all(30),
@@ -83,14 +85,19 @@ class AddNewTaskModel extends ConsumerWidget {
             children: [
               DateTimeWidget(
                 titleText: "Date",
-                valueText: "dd/mm/yy",
+                valueText: dateProv,
                 iconSection: CupertinoIcons.calendar,
-                onTap: () => showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2021),
-                  lastDate: DateTime(2027),
-                ),
+                onTap: () async {
+                  final getValue = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2021),
+                    lastDate: DateTime(2027),
+                  );
+                  if (getValue != null) {
+                    print(getValue.toString());
+                  }
+                },
               ),
               Gap(22),
               DateTimeWidget(
