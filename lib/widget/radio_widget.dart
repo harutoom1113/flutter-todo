@@ -35,7 +35,7 @@ class RadioWidget extends ConsumerWidget {
           value: valueInput,
           groupValue: radio,
           onChanged: (value) {
-            print("clicked");
+            onChangedValue();
           },
         ),
       ),

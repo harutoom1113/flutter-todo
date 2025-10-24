@@ -106,6 +106,30 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
+              Gap(20),
+              Container(
+                width: double.infinity,
+                height: 130,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Container(color: Colors.red, width: 30),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          children: const [
+                            ListTile(title: Text("Learning Web Developer")),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

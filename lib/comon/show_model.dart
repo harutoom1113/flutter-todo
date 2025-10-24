@@ -8,6 +8,7 @@ import 'package:flutter_todo/widget/date_time_widget.dart';
 import 'package:flutter_todo/widget/texyfield_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_todo/widget/radio_widget.dart';
+import 'package:intl/intl.dart';
 
 class AddNewTaskModel extends ConsumerWidget {
   const AddNewTaskModel({super.key});
@@ -15,8 +16,8 @@ class AddNewTaskModel extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dateProv = ref.watch(dateProvider);
+
     return Container(
-      //builderって何者？
       padding: const EdgeInsets.all(30),
       height: MediaQuery.of(context).size.height * 0.70,
       decoration: BoxDecoration(
@@ -95,19 +96,30 @@ class AddNewTaskModel extends ConsumerWidget {
                     lastDate: DateTime(2027),
                   );
                   if (getValue != null) {
-                    print(getValue.toString());
+                    final format = DateFormat.yMd();
+                    ref
+                        .read(dateProvider.notifier)
+                        .update((state) => format.format(getValue));
                   }
                 },
               ),
               Gap(22),
               DateTimeWidget(
                 titleText: "Time",
-                valueText: "hh : mm",
+                valueText: ref.watch(timeProvider),
                 iconSection: CupertinoIcons.clock,
-                onTap: () => showTimePicker(
-                  context: context,
-                  initialTime: TimeOfDay.now(),
-                ),
+                onTap: () async {
+                  final getTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                  );
+
+                  if (getTime != null) {
+                    ref
+                        .read(timeProvider.notifier)
+                        .update((state) => getTime.format(context));
+                  }
+                },
               ),
             ],
           ),
@@ -127,7 +139,7 @@ class AddNewTaskModel extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
 
-                  onPressed: () {},
+                  onPressed: () => Navigator.pop(context),
                   child: const Text("Cancel"),
                 ),
               ),
