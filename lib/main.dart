@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_todo/comon/show_model.dart';
+
+import 'package:flutter_todo/widget/card_todo_widget.dart';
 import 'package:gap/gap.dart';
 
 void main() {
@@ -107,28 +109,10 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               Gap(20),
-              Container(
-                width: double.infinity,
-                height: 130,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    Container(color: Colors.red, width: 30),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          children: const [
-                            ListTile(title: Text("Learning Web Developer")),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              ListView.builder(
+                itemCount: 4,
+                shrinkWrap: true,
+                itemBuilder: (context, index) => const CardTodoListWidget(),
               ),
             ],
           ),
