@@ -15,7 +15,7 @@ void main() async {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Project Template',
         theme: ThemeData(),
-        home: const HomePage(),
+        home: HomePage(),
       ),
     ),
   );

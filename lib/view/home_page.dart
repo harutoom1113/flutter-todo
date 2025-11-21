@@ -5,7 +5,7 @@ import 'package:flutter_todo/widget/card_todo_widget.dart';
 import 'package:gap/gap.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       context: context,
-                      builder: (context) => const AddNewTaskModel(),
+                      builder: (context) => AddNewTaskModel(),
                     ),
                     child: const Text('+New Task'),
                   ),
