@@ -5,7 +5,7 @@ class TodoService {
   final todoCollection = FirebaseFirestore.instance.collection('todoApp');
 
   //CREATE
-  void addNewTask(TodoModel model) {
+  Future<void> addNewTask(TodoModel model) async {
     todoCollection.add(model.toMap());
   }
 }

@@ -97,7 +97,8 @@ class HomePage extends StatelessWidget {
               ListView.builder(
                 itemCount: 4,
                 shrinkWrap: true,
-                itemBuilder: (context, index) => const CardTodoListWidget(),
+                itemBuilder: (context, index) =>
+                    const CardTodoListWidget(getIndex: 1),
               ),
             ],
           ),

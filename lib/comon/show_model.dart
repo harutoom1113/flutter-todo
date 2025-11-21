@@ -198,6 +198,11 @@ class AddNewTaskModel extends ConsumerWidget {
                           ),
                         );
                     print("Data is saving");
+
+                    titleController.clear();
+                    descriptionController.clear();
+                    ref.read(radioProvider.notifier).update((state) => 0);
+                    Navigator.pop(context);
                   },
                   child: const Text("Create"),
                 ),
